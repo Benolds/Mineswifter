@@ -7,25 +7,25 @@
 //
 
 import Foundation
-import UIKit
 
-class Square: UIButton {
+class Square : NSObject {
+    var isMineLocation:Bool
+    var isRevealed:Bool
     
-    var isBombLocation = false
-    var row:Int = 0
-    var col:Int = 0
-    let squareSize = 30
-    let margin = 5
+    var row:Int
+    var col:Int
+    var numNeighboringMines:Int
     
-    init(row:Int, col:Int, isBombLocation:Bool) {
-        let x:CGFloat = CGFloat(col) * CGFloat(30 + margin)
-        let y:CGFloat = CGFloat(row) * CGFloat(30 + margin)
-        let squareFrame = CGRectMake(x, y, 30, 30)
-        super.init(frame: squareFrame)
+    init(row:Int, col:Int) {
         self.row = row
         self.col = col
-        self.isBombLocation = isBombLocation
-        self.setTitle("[ ]", forState: .Normal)
+        
+        // initialize with deafult values that we will assign later
+        self.isMineLocation = false
+        self.isRevealed = false
+        self.numNeighboringMines = 0
+        
+        super.init()
     }
-    
+
 }

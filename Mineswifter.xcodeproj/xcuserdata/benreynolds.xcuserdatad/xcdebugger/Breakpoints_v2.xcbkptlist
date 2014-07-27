@@ -9,13 +9,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mineswifter/Square.swift"
-            timestampString = "427680261.123076"
+            filePath = "Mineswifter/ViewController.swift"
+            timestampString = "428099637.017733"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "init(row:col:isBombLocation:)"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "oneSecond()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mineswifter/SquareButton.swift"
+            timestampString = "428096726.841818"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "getLabelText()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

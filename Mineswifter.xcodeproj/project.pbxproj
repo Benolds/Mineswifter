@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5DB4D100197DD51E00F989C6 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4D0FF197DD51E00F989C6 /* Square.swift */; };
+		5D660341197DF29E00F6E570 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D660340197DF29E00F6E570 /* Board.swift */; };
+		5D660343197DFE4A00F6E570 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D660342197DFE4A00F6E570 /* Square.swift */; };
+		5DB4D100197DD51E00F989C6 /* SquareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4D0FF197DD51E00F989C6 /* SquareButton.swift */; };
 		5DF5DF4C197D61C300710479 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5DF4B197D61C300710479 /* AppDelegate.swift */; };
 		5DF5DF4E197D61C300710479 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5DF4D197D61C300710479 /* ViewController.swift */; };
 		5DF5DF51197D61C300710479 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DF5DF4F197D61C300710479 /* Main.storyboard */; };
@@ -26,11 +28,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5DB4D0FF197DD51E00F989C6 /* Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		5D660340197DF29E00F6E570 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Board.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		5D660342197DFE4A00F6E570 /* Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		5DB4D0FF197DD51E00F989C6 /* SquareButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SquareButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5DF5DF46197D61C300710479 /* Mineswifter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mineswifter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DF5DF4A197D61C300710479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DF5DF4B197D61C300710479 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5DF5DF4D197D61C300710479 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5DF5DF4D197D61C300710479 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5DF5DF50197D61C300710479 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5DF5DF52197D61C300710479 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5DF5DF58197D61C300710479 /* MineswifterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MineswifterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +60,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D660344197FFE1000F6E570 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D660340197DF29E00F6E570 /* Board.swift */,
+				5D660342197DFE4A00F6E570 /* Square.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5D660345197FFE1400F6E570 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5DB4D0FF197DD51E00F989C6 /* SquareButton.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		5D9EEA27198445EA001BFDBD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5DF5DF4D197D61C300710479 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		5DF5DF3D197D61C300710479 = {
 			isa = PBXGroup;
 			children = (
@@ -78,8 +107,9 @@
 			isa = PBXGroup;
 			children = (
 				5DF5DF4B197D61C300710479 /* AppDelegate.swift */,
-				5DF5DF4D197D61C300710479 /* ViewController.swift */,
-				5DB4D0FF197DD51E00F989C6 /* Square.swift */,
+				5D660344197FFE1000F6E570 /* Model */,
+				5D660345197FFE1400F6E570 /* View */,
+				5D9EEA27198445EA001BFDBD /* Controller */,
 				5DF5DF4F197D61C300710479 /* Main.storyboard */,
 				5DF5DF52197D61C300710479 /* Images.xcassets */,
 				5DF5DF49197D61C300710479 /* Supporting Files */,
@@ -211,8 +241,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DB4D100197DD51E00F989C6 /* Square.swift in Sources */,
+				5D660343197DFE4A00F6E570 /* Square.swift in Sources */,
+				5DB4D100197DD51E00F989C6 /* SquareButton.swift in Sources */,
 				5DF5DF4E197D61C300710479 /* ViewController.swift in Sources */,
+				5D660341197DF29E00F6E570 /* Board.swift in Sources */,
 				5DF5DF4C197D61C300710479 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +364,7 @@
 				INFOPLIST_FILE = Mineswifter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -343,6 +376,7 @@
 				INFOPLIST_FILE = Mineswifter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

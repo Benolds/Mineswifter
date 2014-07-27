@@ -9,47 +9,106 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var boardView: UIView!
+    @IBOutlet weak var movesLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
-    // 2d list of tiles
-    var _tiles:Square[][] = []
+    var moves:Int = 0 {
+        didSet {
+            self.movesLabel.text = "Moves: \(moves)"
+        }
+    }
+    var timeTaken:Int = 0  {
+        didSet {
+            self.timeLabel.text = "Time: \(timeTaken)"
+        }
+    }
+    
+    var board:Board
+    let BOARD_SIZE:Int = 10
+    
+    var oneSecondTimer:NSTimer?
+    
+    var squareButtons:[SquareButton] = []
+    
+    init(coder aDecoder: NSCoder!)
+    {
+        self.board = Board(size: BOARD_SIZE)
+        
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let NUM_ROWS = 6
-        let NUM_COLS = 6
+        self.initializeBoard()
         
-        for row in 0..NUM_ROWS {
-            for col in 0..NUM_COLS {
+        self.startNewGame()
+    }
+    
+    func initializeBoard() {
+        for row in 0 ..< board.size {
+            for col in 0 ..< board.size {
                 
-                let square = Square(row: row, col: col, isBombLocation: true)
-                square.setTitle("[  ]", forState: .Normal)
-                square.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
-                square.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-                self.view.addSubview(square)
+                let square = board.squares[row][col]
+                                
+                let squareMargin:Float = 5
+                let squareSize:Float = Float(self.boardView.frame.width) / Float(BOARD_SIZE) - squareMargin //30
                 
+                let squareButton = SquareButton(squareModel: square, squareSize: squareSize, squareMargin: 5);
+                squareButton.setTitle("[x]", forState: .Normal)
+                squareButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
+                squareButton.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
+                self.boardView.addSubview(squareButton)
+                
+                self.squareButtons.append(squareButton)
             }
         }
+    }
+    
+    func resetBoard() {
         
+        self.board.resetBoard()
         
-        
-//        let myFirstButton = UIButton()
-//        myFirstButton.setTitle("[  ]", forState: .Normal)
-//        myFirstButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-//        myFirstButton.frame = CGRectMake(15, -50, 300, 500)
-//        myFirstButton.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-//        self.view.addSubview(myFirstButton)
-        
+        for squareButton in self.squareButtons {
+            squareButton.setTitle("[x]", forState: .Normal)
+        }
         
     }
     
-    func pressed(sender: UIButton!) {
-        var alertView = UIAlertView();
-        alertView.addButtonWithTitle("Ok");
-        alertView.title = "title";
-        alertView.message = "message";
-        alertView.show();
+    func oneSecond() {
+        //println("oneSecond")
+        self.timeTaken++
+    }
+    
+    func pressed(sender: SquareButton!) {
+        
+        if(!sender.square.isRevealed) {
+
+            moves++
+            
+            sender.square.isRevealed = true
+            sender.setTitle("\(sender.getLabelText())", forState: .Normal)
+            
+            if sender.square.isMineLocation {
+                self.minePressed()
+            }
+            
+        }
+    }
+    
+    func minePressed() {
+        
+        self.endCurrentGame()
+        
+        var alertView = UIAlertView()
+        alertView.addButtonWithTitle("New Game")
+        alertView.title = "BOOM!"
+        alertView.message = "You tapped on a mine."
+        alertView.delegate = self
+        alertView.show()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,11 +116,39 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func tappedOnButton(sender : AnyObject) {
-        println("tapped on button", sender.tag)
-        sender.set
+    @IBAction func newGamePressed() {
         
+        self.endCurrentGame()
+        
+        var alertView = UIAlertView()
+        alertView.addButtonWithTitle("OK")
+        alertView.title = "New Game!"
+        alertView.message = "message"
+        alertView.delegate = self
+        alertView.show()
+
     }
+    
+    func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int){
+        
+        //start new game when "OK" button is pressed on the alert
+        self.startNewGame()
+    }
+    
+    func endCurrentGame() {
+        self.oneSecondTimer!.invalidate()
+        self.oneSecondTimer = nil
+    }
+    
+    func startNewGame() {
+        //start new game
+        self.resetBoard()
+        self.timeTaken = 0
+        self.moves = 0
+        self.oneSecondTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("oneSecond"), userInfo: nil, repeats: true)
+    }
+
+
 
 }
 
